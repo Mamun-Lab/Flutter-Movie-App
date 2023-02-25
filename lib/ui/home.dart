@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text("Movie App"),
+        title: Text("Flutter Movie App"),
       ),
       body: getView(),
       bottomNavigationBar: BottomNavigationBar(
