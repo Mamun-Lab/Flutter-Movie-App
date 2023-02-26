@@ -57,7 +57,7 @@ class ApiService {
           url + "?api_key=99ac2298b20a80432c1d0f8618e51601&language=en-US"));
       if (response.statusCode == 200) {
         Map<String, dynamic> json = jsonDecode(response.body);
-        List<dynamic> body = json['crew'];
+        List<dynamic> body = json['cast'];
         List<CastModel> cast =
             body.map((dynamic item) => CastModel.fromJson(item)).toList();
         return cast;

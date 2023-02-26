@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:movie_app/model/movie_model.dart';
 import 'package:movie_app/model/video_model.dart';
-import 'package:movie_app/ui/movie/cast_page.dart';
+import 'package:movie_app/components/cast_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../constants/constants.dart';
@@ -47,23 +47,24 @@ class MovieDetails extends StatelessWidget {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         List<VideoModel> videos = snapshot.data ?? [];
-
-                        return CircleAvatar(
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.play_circle,
-                            ),
-                            onPressed: () async {
-                              if (videos.isNotEmpty) {
-                                if (!await launchUrl(Uri.parse(
-                                    'https://www.youtube.com/embed/${videos[0].key}'))) {
-                                  throw Exception(
-                                      'Could not launch ${videos[0].key}');
+                        if (videos.isNotEmpty) {
+                          return CircleAvatar(
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.play_circle,
+                              ),
+                              onPressed: () async {
+                                if (videos.isNotEmpty) {
+                                  if (!await launchUrl(Uri.parse(
+                                      'https://www.youtube.com/embed/${videos[0].key}'))) {
+                                    throw Exception(
+                                        'Could not launch ${videos[0].key}');
+                                  }
                                 }
-                              }
-                            },
-                          ),
-                        );
+                              },
+                            ),
+                          );
+                        }
                       }
                       return Container();
                     },
@@ -139,7 +140,6 @@ class MovieDetails extends StatelessWidget {
                 ),
                 height: 200,
               ),
-
               SizedBox(
                 height: 10,
               ),

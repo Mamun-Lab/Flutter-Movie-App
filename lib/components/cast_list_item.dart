@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/model/cast_model.dart';
 
-import '../../../constants/constants.dart';
+import '../constants/constants.dart';
 
 class CastListItem extends StatelessWidget {
   final CastModel castModel;
@@ -53,7 +53,7 @@ class CastListItem extends StatelessWidget {
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300),
           ),
           Text(
-            castModel.job.toString(),
+            castModel.knownForDepartment.toString(),
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
             style: TextStyle(color: Colors.grey),

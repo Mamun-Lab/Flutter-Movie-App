@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/model/cast_model.dart';
 
-import '../../service/api_service.dart';
-import 'components/cast_list_item.dart';
+import '../service/api_service.dart';
+import 'cast_list_item.dart';
 
 class CastPage extends StatefulWidget {
   final int id;
