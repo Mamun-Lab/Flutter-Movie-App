@@ -34,14 +34,17 @@ class _MovieCaroselState extends State<MovieCarosel> {
                                   movieModel: widget.movieModellist[itemIndex],
                                 )));
                   },
-                  child: CachedNetworkImage(
-                    width: double.infinity,
-                    fit: BoxFit.fill,
-                    imageUrl: kmoviedbImageURL +
-                        widget.movieModellist[itemIndex].posterPath.toString(),
-                    placeholder: (context, url) =>
-                        Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: CachedNetworkImage(
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                      imageUrl: kmoviedbImageURL +
+                          widget.movieModellist[itemIndex].posterPath.toString(),
+                      placeholder: (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
                   ),
                 ),
             options: CarouselOptions(

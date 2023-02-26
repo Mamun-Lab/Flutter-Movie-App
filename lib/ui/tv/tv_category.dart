@@ -6,7 +6,8 @@ import 'components/tv_list_item.dart';
 
 class TvCategory extends StatefulWidget {
   final TvType tvType;
-  const TvCategory({Key? key,required this.tvType}) : super(key: key);
+  final int tvID;
+  const TvCategory({Key? key,required this.tvType,this.tvID = 0}) : super(key: key);
 
   @override
   State<TvCategory> createState() => _TvCategoryState();
@@ -34,7 +35,7 @@ class _TvCategoryState extends State<TvCategory> {
           child: CircularProgressIndicator(),
         );
       },
-      future: apiService.getTVData(widget.tvType),
+      future: apiService.getTVData(widget.tvType,tvID: widget.tvID),
     );
   }
 }

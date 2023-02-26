@@ -26,13 +26,16 @@ class TvListItem extends StatelessWidget {
         width: 120,
         child: Column(
           children: [
-            CachedNetworkImage(
-              height: 140,
-              //width: double.infinity,
-              fit: BoxFit.cover,
-              imageUrl: kmoviedbImageURL + tvModel.posterPath.toString(),
-              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: CachedNetworkImage(
+                height: 140,
+                //width: double.infinity,
+                fit: BoxFit.cover,
+                imageUrl: kmoviedbImageURL + tvModel.posterPath.toString(),
+                placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
             ),
             Text(
               tvModel.originalName.toString(),

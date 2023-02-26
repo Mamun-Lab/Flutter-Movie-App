@@ -33,7 +33,7 @@ class _TVPageState extends State<TVPage> {
                 child: CircularProgressIndicator(),
               );
             },
-            future: apiService.getTVData(TvType.onTheAir),
+            future: apiService.getTVData(TvType.airingTody),
           ),
           SizedBox(
             height: 8,

@@ -31,15 +31,18 @@ class _TVCaruselState extends State<TVCarusel> {
                               tvModel: widget.tvModelList[itemIndex],
                             )));
                   },
-                  child: CachedNetworkImage(
-                    width: double.infinity,
-                    fit: BoxFit.fill,
-                    imageUrl: kmoviedbImageURL +
-                        widget.tvModelList[itemIndex].posterPath.toString(),
-                    placeholder: (context, url) =>
-                        Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) =>
-                        Icon(Icons.error),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: CachedNetworkImage(
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                      imageUrl: kmoviedbImageURL +
+                          widget.tvModelList[itemIndex].posterPath.toString(),
+                      placeholder: (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                          Icon(Icons.error),
+                    ),
                   ),
                 ),
             options: CarouselOptions(

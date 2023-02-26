@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:movie_app/model/tv_model.dart';
 import 'package:movie_app/ui/tv/tv_category.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../constants/constants.dart';
+import '../../model/video_model.dart';
 import '../../service/api_service.dart';
 
 class TVDetails extends StatelessWidget {
@@ -14,6 +16,7 @@ class TVDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ApiService apiService = ApiService();
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -36,8 +39,31 @@ class TVDetails extends StatelessWidget {
                       Center(child: CircularProgressIndicator()),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
-                CircleAvatar(
-                  child: Icon(Icons.play_circle),
+                FutureBuilder(
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<VideoModel> videos = snapshot.data ?? [];
+
+                      return CircleAvatar(
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.play_circle,
+                          ),
+                          onPressed: () async {
+                            if (videos.isNotEmpty) {
+                              if (!await launchUrl(Uri.parse(
+                                  'https://www.youtube.com/embed/${videos[0].key}'))) {
+                                throw Exception(
+                                    'Could not launch ${videos[0].key}');
+                              }
+                            }
+                          },
+                        ),
+                      );
+                    }
+                    return Container();
+                  },
+                  future: apiService.getVideo(tvModel.id ?? 0, ProgramType.tv),
                 )
               ],
             ),
@@ -105,7 +131,8 @@ class TVDetails extends StatelessWidget {
             ),
             SizedBox(
               child: TvCategory(
-                tvType: TvType.topRated,
+                tvType: TvType.similar,
+                tvID: tvModel.id ?? 0,
               ),
               height: 200,
             ),

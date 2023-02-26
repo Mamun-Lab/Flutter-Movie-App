@@ -34,7 +34,7 @@ class _MoviePageState extends State<MoviePage> {
                 child: CircularProgressIndicator(),
               );
             },
-            future: apiService.getMovieData(MovieType.upcoming),
+            future: apiService.getMovieData(MovieType.nowPlaying),
           ),
           SizedBox(
             height: 8,

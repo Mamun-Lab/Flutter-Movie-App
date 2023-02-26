@@ -8,8 +8,9 @@ import 'components/movie_list_item.dart';
 class MoviesCategory extends StatefulWidget {
 
   final MovieType movieType;
+  final int movieID;
 
-  const MoviesCategory({Key? key,required this.movieType}) : super(key: key);
+  const MoviesCategory({Key? key,required this.movieType,this.movieID = 0}) : super(key: key);
 
   @override
   State<MoviesCategory> createState() => _MoviesCategoryState();
@@ -37,7 +38,7 @@ class _MoviesCategoryState extends State<MoviesCategory> {
           child: CircularProgressIndicator(),
         );
       },
-      future: apiService.getMovieData(widget.movieType),
+      future: apiService.getMovieData(widget.movieType,movieID: widget.movieID),
     );
   }
 }
